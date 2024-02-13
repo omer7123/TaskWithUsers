@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import com.example.taskwithusers.data.remote.models.Result
 import com.example.taskwithusers.databinding.FragmentDetailBinding
 import com.example.taskwithusers.extensions.load
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class DetailFragment : Fragment() {
@@ -52,11 +54,18 @@ class DetailFragment : Fragment() {
                 cellTv.text = user.cell.toString()
 
                 registrageTv.text = user.registered?.age.toString()
-                registrdateTv.text = user.registered?.date
 
+                val date = formatDate(user.registered?.date.toString())
+                registrdateTv.text = date
             }
         }
 
+    }
+    fun formatDate(dateTimeString: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val date = inputFormat.parse(dateTimeString)
+        return outputFormat.format(date!!)
     }
 
 }
