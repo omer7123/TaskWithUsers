@@ -1,6 +1,7 @@
 package com.example.taskwithusers.ui.home_fragment
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -110,14 +111,15 @@ class HomeFragment : Fragment(), HomeAdapter.Listener {
                         db.userDao().addUsers(users.results)
                         adapter.submitList(users.results)
                     } ?: run {
-                        Snackbar.make(
+                        val snackbar = Snackbar.make(
                             binding.swipeRefresh,
                             "С сервера пришел null, попробуйте чуть позже",
                             Snackbar.LENGTH_LONG
-                        ).show()
+                        )
+                        snackbar.show()
+
                     }
                 }
-
                 Status.ERROR -> {
                     requireContext().showToast(it.msg.toString())
                 }

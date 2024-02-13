@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu"
-                    android:text="Адрес"
+                    android:text="Loc:"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginStart="26dp"
                     android:fontFamily="@font/ubuntu"
                     android:text="Страна Россия, г. Томск"
                     android:textColor="@color/white"
