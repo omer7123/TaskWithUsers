@@ -30,7 +30,10 @@ class HomeAdapter(private val listener: Listener) :
                 listener.clickPhone(item.phone)
             }
             binding.locationTv.setOnClickListener {
-                listener.clickLocation(item.location?.coordinates!!.latitude, item.location!!.coordinates!!.longitude)
+                listener.clickLocation(
+                    item.location?.coordinates!!.latitude,
+                    item.location!!.coordinates!!.longitude
+                )
             }
         }
 

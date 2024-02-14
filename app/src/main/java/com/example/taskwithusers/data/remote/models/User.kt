@@ -13,9 +13,9 @@ data class User(
 
 
 data class Street(
-    @ColumnInfo("name_street")val name: String?,
+    @ColumnInfo("name_street") val name: String?,
     val number: Int?
-): Serializable
+) : Serializable
 
 
 @Entity(tableName = "result")
@@ -37,21 +37,21 @@ data class Result(
 ) : Serializable
 
 data class Registered(
-    @ColumnInfo(name = "age_reg")val age: Int?,
-    @ColumnInfo(name = "date_reg")val date: String?
-): Serializable
+    @ColumnInfo(name = "age_reg") val age: Int?,
+    @ColumnInfo(name = "date_reg") val date: String?
+) : Serializable
 
 data class Picture(
     val large: String?,
     val medium: String?,
     val thumbnail: String?
-): Serializable
+) : Serializable
 
 data class Name(
     val first: String?,
     val last: String?,
     val title: String?
-): Serializable
+) : Serializable
 
 data class Login(
     val md5: String?,
@@ -61,32 +61,32 @@ data class Login(
     val sha256: String?,
     val username: String?,
     val uuid: String?
-): Serializable
+) : Serializable
 
 data class Location(
     val city: String?,
     val country: String?,
-    val postcode: Int?,
+    val postcode: String?,
     val state: String?,
     @Embedded var coordinates: Coordinates?,
     @Embedded var street: Street?,
-): Serializable
+) : Serializable
 
 data class Info(
     val page: Int?,
     val results: Int?,
     val seed: String?,
     val version: String?
-): Serializable
+) : Serializable
 
 data class Id(
-    @ColumnInfo(name = "name_id")val name: String?,
+    @ColumnInfo(name = "name_id") val name: String?,
     val value: String?
 )
 
 data class Dob(
-  @ColumnInfo(name = "age_dob")  val age: Int?,
-  @ColumnInfo(name = "date_dob")  val date: String?
+    @ColumnInfo(name = "age_dob") val age: Int?,
+    @ColumnInfo(name = "date_dob") val date: String?
 )
 
 data class Coordinates(

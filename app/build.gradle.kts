@@ -85,4 +85,10 @@ dependencies {
     implementation ("io.insert-koin:koin-androidx-scope:$koin_version")
     implementation ("io.insert-koin:koin-androidx-viewmodel:$koin_version")
 
+    // reflection-based flavor
+    implementation ("com.github.kirich1409:viewbindingpropertydelegate-full:1.5.9")
+
+    // reflection-free flavor
+    implementation ("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
+
 }

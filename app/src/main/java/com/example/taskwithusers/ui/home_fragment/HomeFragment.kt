@@ -1,19 +1,16 @@
 package com.example.taskwithusers.ui.home_fragment
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.taskwithusers.R
 import com.example.taskwithusers.core.network.result.Status
+import com.example.taskwithusers.core.ui.BaseFragment
 import com.example.taskwithusers.data.local.room.AppDataBase
 import com.example.taskwithusers.data.remote.models.Result
 import com.example.taskwithusers.databinding.FragmentHomeBinding
@@ -23,40 +20,26 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeFragment : Fragment(), HomeAdapter.Listener {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(R.layout.fragment_home),
+    HomeAdapter.Listener {
 
-    private lateinit var binding: FragmentHomeBinding
+    override val binding: FragmentHomeBinding by viewBinding()
+
     private val adapter = HomeAdapter(this)
     private lateinit var navController: NavController
-    private val viewModel: HomeViewModel by viewModel()
+    override val viewModel: HomeViewModel by viewModel()
     private val db: AppDataBase by inject()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = findNavController()
-
-        binding.usersRv.adapter = adapter
-        val users = db.userDao().getUsers()
-        if (users.isNotEmpty()) {
-            adapter.submitList(db.userDao().getUsers())
-            viewModel.loading.value = false
-        } else requestUsers()
-
-
+    override fun initListeners() {
+        super.initListeners()
         viewModel.loading.observe(requireActivity()) {
             binding.progressCircular.isVisible = it
         }
 
         binding.swipeRefresh.setOnRefreshListener {
             requestUsers()
+
             binding.usersRv.layoutManager?.smoothScrollToPosition(
                 binding.usersRv,
                 RecyclerView.State(),
@@ -64,11 +47,27 @@ class HomeFragment : Fragment(), HomeAdapter.Listener {
             )
             binding.swipeRefresh.isRefreshing = false
         }
+
         binding.refreshTv.setOnClickListener {
             requestUsers()
         }
     }
 
+    override fun initNavController() {
+        super.initNavController()
+        navController = findNavController()
+    }
+
+    override fun initViews() {
+        super.initViews()
+        binding.usersRv.adapter = adapter
+        val users = db.userDao().getUsers()
+        if (users.isNotEmpty()) {
+            adapter.submitList(db.userDao().getUsers())
+            viewModel.loading.value = false
+        } else requestUsers()
+
+    }
 
     override fun clickItem(user: Result) {
         val bundle = Bundle()
@@ -120,8 +119,10 @@ class HomeFragment : Fragment(), HomeAdapter.Listener {
 
                     }
                 }
+
                 Status.ERROR -> {
                     requireContext().showToast(it.msg.toString())
+                    viewModel.loading.value = false
                 }
 
                 Status.LOADING -> {
