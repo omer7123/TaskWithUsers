@@ -2,6 +2,8 @@ package com.example.taskwithusers.ui.detail_fragment
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.taskwithusers.R
 import com.example.taskwithusers.core.ui.BaseFragment
@@ -22,7 +24,7 @@ class DetailFragment : BaseFragment<BaseViewModel, FragmentDetailBinding>(R.layo
 
     override val binding: FragmentDetailBinding by viewBinding()
     override val viewModel: BaseViewModel by viewModel()
-
+    private lateinit var navController: NavController
     /**
      * Initializes views in the fragment.
      * Populates UI components with user details retrieved from arguments.
@@ -44,7 +46,16 @@ class DetailFragment : BaseFragment<BaseViewModel, FragmentDetailBinding>(R.layo
         }
     }
 
-
+    override fun initNavController() {
+        super.initNavController()
+        navController = findNavController()
+    }
+    override fun initListeners() {
+        super.initListeners()
+        binding.backIv.setOnClickListener {
+            navController.popBackStack()
+        }
+    }
     private fun registerFill(user: Result) {
         binding.apply {
             registrageTv.text = user.registered?.age.toString()
