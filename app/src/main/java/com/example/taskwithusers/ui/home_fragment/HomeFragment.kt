@@ -122,6 +122,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(R.layout.f
 
                 Status.ERROR -> {
                     requireContext().showToast(it.msg.toString())
+                    val snackbar = Snackbar.make(
+                        binding.swipeRefresh,
+                        it.msg.toString(),
+                        Snackbar.LENGTH_LONG
+                    )
+                    snackbar.show()
                     viewModel.loading.value = false
                 }
 
