@@ -1,4 +1,4 @@
-package com.example.taskwithusers.data.remote.models
+package com.example.taskwithusers.domain.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded

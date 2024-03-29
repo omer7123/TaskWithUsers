@@ -8,7 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.taskwithusers.R
 import com.example.taskwithusers.core.ui.BaseFragment
 import com.example.taskwithusers.core.ui.BaseViewModel
-import com.example.taskwithusers.data.remote.models.Result
+import com.example.taskwithusers.domain.entity.Result
 import com.example.taskwithusers.databinding.FragmentDetailBinding
 import com.example.taskwithusers.extensions.load
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -84,7 +84,7 @@ class DetailFragment : BaseFragment<BaseViewModel, FragmentDetailBinding>(R.layo
         }
     }
 
-    private fun firstFill(user:Result) {
+    private fun firstFill(user: Result) {
         binding.apply {
             countryTv.text = user.location?.country
             cityTv.text = user.location?.city

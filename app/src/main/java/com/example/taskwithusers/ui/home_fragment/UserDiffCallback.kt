@@ -1,8 +1,7 @@
 package com.example.taskwithusers.ui.home_fragment
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.taskwithusers.data.remote.models.Result
-import com.example.taskwithusers.data.remote.models.User
+import com.example.taskwithusers.domain.entity.Result
 
 /**
  * DiffUtil.ItemCallback implementation for comparing user items in a RecyclerView.

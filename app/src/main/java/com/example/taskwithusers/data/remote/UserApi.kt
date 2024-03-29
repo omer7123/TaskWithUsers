@@ -1,6 +1,6 @@
 package com.example.taskwithusers.data.remote
 
-import com.example.taskwithusers.data.remote.models.User
+import com.example.taskwithusers.domain.entity.User
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

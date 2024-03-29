@@ -18,4 +18,6 @@
     <string name="nationality">Nationality:</string>
     <string name="register_date">Registration date:</string>
     <string name="register_age">Registration age:</string>
+
+    <string name="error_request">С сервера пришел null, попробуйте чуть позже</string>
 </resources>

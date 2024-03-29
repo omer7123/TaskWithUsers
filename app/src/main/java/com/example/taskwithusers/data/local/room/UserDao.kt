@@ -1,11 +1,10 @@
 package com.example.taskwithusers.data.local.room
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.taskwithusers.data.remote.models.Result
+import com.example.taskwithusers.domain.entity.Result
 
 @Dao
 interface UserDao {

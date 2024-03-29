@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.taskwithusers.data.remote.models.Result
+import com.example.taskwithusers.domain.entity.Result
 import com.example.taskwithusers.databinding.ItemUserBinding
 import com.example.taskwithusers.extensions.load
 

@@ -2,7 +2,7 @@ package com.example.taskwithusers.data.local.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.taskwithusers.data.remote.models.Result
+import com.example.taskwithusers.domain.entity.Result
 
 @Database(
     entities = [Result::class],
